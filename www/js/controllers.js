@@ -106,7 +106,7 @@ angular.module('starter.controllers')
 
 
    console.error('Error', status, data);
-   }); //End get HPP value
+   }); //End get price value
 
  $http.get('js/data5.json').success(function(result) { 
    $scope.averageprice = result.data;
@@ -121,7 +121,7 @@ angular.module('starter.controllers')
 
 
    console.error('Error', status, data);
-   }); //End get average HPP value
+   }); //End get average price value
    
    var deferred = $q.defer();
    $http.get('js/data3.json').success(function(result) { 
@@ -133,7 +133,7 @@ angular.module('starter.controllers')
    }).error(function(data, status) {
 
 
-  }); //End get average year HPP value
+  }); //End get average year price value
 
   $scope.data[0] = $scope.datas;
   $scope.data[1] = $scope.avg;

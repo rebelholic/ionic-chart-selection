@@ -89,16 +89,16 @@ angular.module('starter.controllers')
  $http.get('js/data4.json').success(function(result) { 
    var deferred = $q.defer();
    $scope.dash.msg  = result.message;
-   $scope.hpps = result.data;
-   deferred.resolve($scope.hpps);
-   angular.forEach($scope.hpps,function(value,index){
+   $scope.prices = result.data;
+   deferred.resolve($scope.prices);
+   angular.forEach($scope.prices,function(value,index){
    var values =  {
                   value : value.value,
                   date : new Date(value.created_at.replace(/-/g,"/"))
     };
 
     $scope.datas.push(values.value);
-    $scope.dash.hpp = $scope.datas[2];
+    $scope.dash.price = $scope.datas[2];
     $scope.date.push($filter('date')(values.date,'dd-MMM'));    
     $scope.date.splice(2); 
     return deferred.promise;       
@@ -109,8 +109,8 @@ angular.module('starter.controllers')
    }); //End get HPP value
 
  $http.get('js/data5.json').success(function(result) { 
-   $scope.ahpp = result.data;
-   angular.forEach($scope.ahpp,function(value,index){
+   $scope.averageprice = result.data;
+   angular.forEach($scope.averageprice,function(value,index){
    var avgvalue =  {
                     average: value.average,
                     date : new Date(value.created_at.replace(/-/g,"/"))
@@ -125,10 +125,10 @@ angular.module('starter.controllers')
    
    var deferred = $q.defer();
    $http.get('js/data3.json').success(function(result) { 
-   $scope.ayhpp = result.data;
-   deferred.resolve($scope.ayhpp);
-   console.log ($scope.ayhpp);
-   $scope.avgy.push($scope.ayhpp.yearly_average);
+   $scope.averageyearprice = result.data;
+   deferred.resolve($scope.averageyearprice);
+   console.log ($scope.averageyearprice);
+   $scope.avgy.push($scope.averageyearprice.yearly_average);
    return deferred.promise;
    }).error(function(data, status) {
 

@@ -1,0 +1,23 @@
+<ion-view cache-view="false" view-title="{{title}}">
+    <ion-nav-bar class="nav-title-slide-ios7 bar-assertive"></ion-nav-bar> 
+ <ion-content class="has-header"> 
+      <div class="list">
+          <div class="row item">
+            <div class="col text-left assertive">   <select name='options' ng-model="dash2" ng-change="change2(dash2)" ng-options="DOLLtype as DOLLtype.name  for DOLLtype in dolltype">
+             </select></div>
+           <div class="col text-right assertive"> <select name='options' ng-model="dash1" ng-change="change(dash1)" ng-options="REGIONtype as REGIONtype.name for REGIONtype in regiontype">
+             </select></div>
+           </div>
+           <div class="row item">
+             <div class="col">Current Price</div>
+             <div class="col text-right assertive">{{dash.hpp}} %</div>
+             </div>
+            </br>
+            <div class="row item" id="container">
+              <div class="col text-center">
+                        <p>{{dash.msg}}</p>
+                 <canvas id="line" class="chart chart-line" data="data" labels="labels" series='series' height="100" legend="true" colours="colours"></canvas>
+               </div>
+              </div>
+  </ion-content>
+</ion-view>

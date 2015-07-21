@@ -1,26 +1,36 @@
 angular.module('starter.controllers')
 
 .controller('DashCtrl', ['$scope', '$q', '$http', '$timeout', '$interval', '$state', '$filter', '$location', 'DOLLTYPE', 'REGION', function($scope, $q, $http, $timeout,  $interval, $state, $filter, $location, DOLLTYPE, REGION) {
-    var deferred = $q.defer();
-            $http.get('js/data2.json').success(function(result) {
-              var region = result;
-              console.log (region);
-              deferred.resolve(region);
-              for (var i = region.length - 1; i >= 0; i--) {
-              REGION.add(region[i]); console.log('success')};
-            return deferred.promise;
-            })     
-            
-            var deferred = $q.defer();
-            $http.get('js/data.json').success(function(result) {
-               var dolltype = result;
-               console.log (dolltype);
-               deferred.resolve(dolltype);
-               for (var i = dolltype.length - 1; i >= 0; i--) {
-               DOLLTYPE.add(dolltype[i]); console.log('success')};
-            return deferred.promise;
-            })  
-            
+   $http
+    .get('js/data2.json')
+    .then(function(region) {
+
+        var i = region.length -1;
+
+        for (i; i >= 0; i--) {
+            REGION.add(region[i]);
+        };
+
+    })
+    .catch(function(error){
+        console.log('Error fetching region data: ', error)
+    })
+    
+    $http
+    .get('js/data.json')
+    .then(function(result) {
+
+        var i = result.length -1;
+
+        for (i; i >= 0; i--) {
+            DOLLTYPE.add(result[i]);
+        };
+
+    })
+    .catch(function(error){
+        console.log('Error fetching doll data: ', error)
+    })
+             
  $scope.title = "Dashboard";
 
   
@@ -37,14 +47,21 @@ angular.module('starter.controllers')
  $scope.ayv = [];
 
  $scope.dolltype = [];
- DOLLTYPE.all().then(function(dolltype){ 
- $scope.dolltype=dolltype
- })
- $scope.regiontype = [];
- REGION.all().then(function(regiontype){ 
- $scope.regiontype=regiontype
- })
+ DOLLTYPE
+     .all()
+     .then(function(dolltype){ 
+         $scope.dolltype    = dolltype;
+         $scope.dash2       = $scope.dolltype[0];
+     });
 
+ 
+ $scope.regiontype = [];
+ REGION
+     .all()
+     .then(function(regiontype){ 
+        $scope.regiontype = regiontype;
+        $scope.dash1      = $scope.regiontype[0];
+     })
  
  $scope.change = function(dash1) {
   $scope.place = dash1;
